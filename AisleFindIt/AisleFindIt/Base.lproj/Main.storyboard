@@ -28,6 +28,7 @@
                                 <rect key="frame" x="281" y="208" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
+                                    <action selector="onLoginClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="waS-JN-RsB"/>
                                     <segue destination="FnO-2x-xJT" kind="show" identifier="LoginSegueIdentifier" id="jJz-bY-AUI"/>
                                 </connections>
                             </button>
@@ -77,6 +78,12 @@
                                     <segue destination="9i3-jZ-pk9" kind="show" identifier="storeMapSegueIdentifier" id="ApP-L9-ytg"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login Unsuccessful" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqK-Pe-oVk">
+                                <rect key="frame" x="225" y="343" width="150" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -88,7 +95,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="bgl-QS-DaO" secondAttribute="trailing" constant="123" id="Ihv-Vg-y2Q"/>
                             <constraint firstItem="1cB-fF-fij" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JGS-Ub-UEq"/>
                             <constraint firstItem="bgl-QS-DaO" firstAttribute="leading" secondItem="f1M-T3-aae" secondAttribute="trailing" constant="8" id="Jam-mW-Oxu"/>
+                            <constraint firstItem="bqK-Pe-oVk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KiR-eK-rx6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mBg-6o-4Fb" secondAttribute="trailing" constant="123" id="ask-f4-7Zv"/>
+                            <constraint firstItem="bqK-Pe-oVk" firstAttribute="top" secondItem="ITe-Vr-WLk" secondAttribute="bottom" constant="28" id="bQS-aW-hAB"/>
                             <constraint firstItem="YEf-aF-RFN" firstAttribute="top" secondItem="bgl-QS-DaO" secondAttribute="bottom" constant="16" id="c8b-8W-uaI"/>
                             <constraint firstItem="vhC-mi-wox" firstAttribute="top" secondItem="YEf-aF-RFN" secondAttribute="bottom" constant="18" id="hNH-Q1-kX6"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1cB-fF-fij" secondAttribute="bottom" constant="20" id="lke-yb-e5w"/>
@@ -102,8 +111,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="QD7-9s-wKP"/>
                     <connections>
+                        <outlet property="loginAlertLabel" destination="bqK-Pe-oVk" id="eVv-OL-AYw"/>
                         <outlet property="password" destination="bgl-QS-DaO" id="SA0-9C-tpl"/>
-                        <outlet property="userName" destination="bgl-QS-DaO" id="ivI-HL-POL"/>
+                        <outlet property="userName" destination="mBg-6o-4Fb" id="AC6-gP-nbo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -226,7 +236,27 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="suF-hu-0SW" kind="show" identifier="CreateListSegueIdentifier" id="d9Z-h6-6n1"/>
+                                    <segue destination="suF-hu-0SW" kind="show" identifier="CreateListSegueIdentifier" id="cg0-gG-QsW"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainTableCell2" textLabel="cyY-JK-CVu" style="IBUITableViewCellStyleDefault" id="DKn-On-NBq">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DKn-On-NBq" id="TEI-X4-ghv">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cyY-JK-CVu">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="9i3-jZ-pk9" kind="show" identifier="StoreMapSegueIdentifier" id="uYU-9u-ke3"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -238,7 +268,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I0L-be-8um" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="596" y="1126"/>
+            <point key="canvasLocation" x="889" y="1116"/>
         </scene>
         <!--Create List Table View Controller-->
         <scene sceneID="97c-Vl-egi">
@@ -256,7 +286,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fSc-tV-H1D">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fSc-tV-H1D">
                                             <rect key="frame" x="8" y="7" width="584" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -264,6 +294,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="leadingMargin" secondItem="fSc-tV-H1D" secondAttribute="leading" id="ESp-e6-s7a"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fSc-tV-H1D" secondAttribute="trailing" id="Z81-Ut-d8H"/>
                                         <constraint firstItem="fSc-tV-H1D" firstAttribute="centerY" secondItem="TjG-wf-t7y" secondAttribute="centerY" id="wpF-wh-eGs"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -280,7 +311,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nZ8-py-u3a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1271" y="1126"/>
+            <point key="canvasLocation" x="1563" y="1116"/>
         </scene>
         <!--Store Map View Controller-->
         <scene sceneID="FTc-L9-6TY">
@@ -372,7 +403,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rf7-yH-QCQ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="596" y="1841"/>
+            <point key="canvasLocation" x="604" y="1895"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fTe-Cc-wP1">
@@ -393,4 +424,7 @@
             <point key="canvasLocation" x="-221" y="395"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ApP-L9-ytg"/>
+    </inferredMetricsTieBreakers>
 </document>

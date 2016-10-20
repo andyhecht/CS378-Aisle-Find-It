@@ -51,21 +51,20 @@ class MainTableViewController: UITableViewController {
  
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = indexPath.row //2
-        if (row == 2){
-            
+        if(row == 1){
+            self.performSegueWithIdentifier("CreateListSegueIdentifier", sender: self)
+        }else if (row == 2){
+            self.performSegueWithIdentifier("StoreMapSegueIdentifier", sender: self)
         }
     }
 
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if let cell = sender as? UITableViewCell {
-            let row = cell.textLabel
-            if (row!.isEqual("Choose Store")) {
-                segue.destinationViewController as? StoreMapViewController
-            }else if(row!.isEqual("Create New Grocery List")) {
-                segue.destinationViewController as? CreateListTableViewController
-            }
-        }
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
+        return false
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        shouldPerformSegueWithIdentifier("", sender: sender)
     }
     
     /*
