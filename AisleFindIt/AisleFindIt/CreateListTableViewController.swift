@@ -14,7 +14,10 @@ class CreateListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Item", style: .Plain, target: self, action: #selector(addTapped))
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(logOut)), UIBarButtonItem(title: "Add Item", style: .Plain, target: self, action: #selector(addTapped))
+]
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Item", style: .Plain, target: self, action: #selector(addTapped))
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -84,7 +87,11 @@ class CreateListTableViewController: UITableViewController {
         list.append("");
         self.tableView.reloadData()
     }
-
+    
+    func logOut(){
+        print("Logging out")
+        navigationController?.popToRootViewControllerAnimated(true)
+    }
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {

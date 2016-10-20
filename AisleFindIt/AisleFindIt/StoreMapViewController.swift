@@ -185,6 +185,10 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.Plain, target:self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: nil)
+        
         collectionView.delegate = self;
         collectionView.dataSource = self;
         for i in 1 ..< 112 {

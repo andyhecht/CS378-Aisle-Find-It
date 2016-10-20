@@ -21,9 +21,12 @@ class ViewController: UIViewController, AddNewUser {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("view did load")
         userName.placeholder = "Enter User Name"
         password.placeholder = "Enter Password"
         loginAlertLabel.text = ""
+        
         // Do any additional setup after loading the view, typically from a nib.
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
@@ -36,6 +39,10 @@ class ViewController: UIViewController, AddNewUser {
         } catch let error as NSError {
             print("Failed to fetch \(error), \(error.userInfo)")
         }
+    }
+    
+    func logOut(){
+        
     }
     
     override func didReceiveMemoryWarning() {

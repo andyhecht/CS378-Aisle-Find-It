@@ -163,6 +163,7 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="onLoginClicked:" destination="KDp-Sq-HKu" eventType="touchUpInside" id="iuH-Th-iKp"/>
+                                    <segue destination="FnO-2x-xJT" kind="show" identifier="CreateNewLoginSegueIdentifier" id="QaE-dK-sQz"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gKa-Il-Zlo">
@@ -426,5 +427,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ApP-L9-ytg"/>
+        <segue reference="QaE-dK-sQz"/>
     </inferredMetricsTieBreakers>
 </document>

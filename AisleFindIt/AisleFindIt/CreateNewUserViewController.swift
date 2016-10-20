@@ -20,6 +20,7 @@ class CreateNewUserViewController: UIViewController, LoginProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         userName.placeholder = "Enter User Name"
         password.placeholder = "Enter Password"
         reEnterPassword.placeholder = "Re-Enter Password"
@@ -42,20 +43,32 @@ class CreateNewUserViewController: UIViewController, LoginProtocol {
         
     }
     
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        return false
+    }
+    
     @IBAction func onLoginClicked(sender: AnyObject) {
         let userNameEntry = NSCharacterSet.init(charactersInString: userName.text!)
         
         let userNameText = userName.text!
         let passwordText = password.text!
         
+        var loginValid = false
+        
         if(!checkUserName.isSupersetOfSet(userNameEntry)){
             notify("Invalid Characters used for Username. Please only use letters, numbers or any of the following characters: '-', '_', '.'.")
-        }else if(userNameEntry == ""){
+        }else if(userNameText == ""){
             notify("Please enter a Username")
         }else if(password.text! != reEnterPassword.text!){
             notify("Passwords do not match.") // bring up alert that says "Passwords do not match!"
         }else{
+            loginValid = true
             delegate.addNew(userNameText, password: passwordText)
         }
+        
+        if(loginValid){
+            self.performSegueWithIdentifier("CreateNewLoginSegueIdentifier", sender: self)
+        }
+        
     }
 }
