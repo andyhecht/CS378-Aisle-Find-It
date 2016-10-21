@@ -22,7 +22,6 @@ class ViewController: UIViewController, AddNewUser {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("view did load")
         userName.placeholder = "Enter User Name"
         password.placeholder = "Enter Password"
         loginAlertLabel.text = ""
@@ -44,6 +43,13 @@ class ViewController: UIViewController, AddNewUser {
     func logOut(){
         
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        userName.text = ""
+        password.text = ""
+        loginAlertLabel.text = ""
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

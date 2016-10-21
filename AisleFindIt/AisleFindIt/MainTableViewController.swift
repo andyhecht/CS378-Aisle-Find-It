@@ -10,11 +10,13 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
 
-    var array:Array<String> = ["View Grocery Lists", "Create New Grocery List", "Choose Store", "Settings"]
+    var array:Array<String> = ["View Grocery List", "Create New Grocery List", "Choose Store", "Settings"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(logOut))
 //        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: nil)
 
         // Uncomment the following line to preserve selection between presentations
@@ -53,7 +55,9 @@ class MainTableViewController: UITableViewController {
  
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = indexPath.row //2
-        if(row == 1){
+        if(row == 0){
+            self.performSegueWithIdentifier("ViewGroceryListSegueIdentifier", sender: self)
+        }else if(row == 1){
             self.performSegueWithIdentifier("CreateListSegueIdentifier", sender: self)
         }else if (row == 2){
             self.performSegueWithIdentifier("StoreMapSegueIdentifier", sender: self)
@@ -69,6 +73,11 @@ class MainTableViewController: UITableViewController {
         shouldPerformSegueWithIdentifier("", sender: sender)
     }
     
+    
+    func logOut(){
+        print("Logging out")
+        navigationController?.popToRootViewControllerAnimated(true)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

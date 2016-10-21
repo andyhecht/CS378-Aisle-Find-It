@@ -178,6 +178,8 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
         "Wine" : 31
     ]
     
+    var pins = [-1]
+    
     enum ErrorHandling:ErrorType
     {
         case NetworkError
@@ -194,6 +196,14 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
         for i in 1 ..< 112 {
             items.append("\(i)")
         }
+        
+        for i in list {
+            let item = i
+            if let location = dictionary[item]{
+                pins.append(location)
+            }
+        }
+        
         load_image("https://github.com/jyazdani/store-maps/blob/master/guide-austin-465-1.png?raw=true")
     }
     
@@ -244,13 +254,16 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath)as! CollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        if((indexPath.item == 43) || (indexPath.item == 66) || (indexPath.item == 74)){
+//        var first:String = list[0]
+//        var num = dictionary[first]
+//        print("value is: \(num)")
+        
+        if(pins.contains(indexPath.item)){
             cell.myLabel.text = ""
             cell.image.image = UIImage(named: "pin")
-        }else if(indexPath == 24){
-            // TODO: set eggs location to show pin: cell.image didn't work the way I had hoped. I couldn't figure out how to get it going
         }else{
-            cell.myLabel.text = self.items[indexPath.item]
+            cell.myLabel.text = ""
+//            cell.myLabel.text = self.items[indexPath.item]
         }
         //        cell.backgroundColor = UIColor.clearColor() // make cell more visible in our example project
         
