@@ -59,7 +59,9 @@ class CreateNewUserViewController: UIViewController, LoginProtocol {
             notify("Invalid Characters used for Username. Please only use letters, numbers or any of the following characters: '-', '_', '.'.")
         }else if(userNameText == ""){
             notify("Please enter a Username")
-        }else if(password.text! != reEnterPassword.text!){
+        }else if(passwordText == ""){
+            notify("Please enter a Password")
+        }else if(passwordText != reEnterPassword.text!){
             notify("Passwords do not match.") // bring up alert that says "Passwords do not match!"
         }else{
             loginValid = true
