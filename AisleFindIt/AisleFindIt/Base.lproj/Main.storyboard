@@ -248,7 +248,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="9i3-jZ-pk9" kind="show" identifier="StoreMapSegueIdentifier" id="uYU-9u-ke3"/>
+                                    <segue destination="pZx-Tg-a2J" kind="show" identifier="ChooseStoreSegueIdentifier" id="eqT-AG-U6P"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainTableCell3" textLabel="ISj-eU-dPb" style="IBUITableViewCellStyleDefault" id="XCC-Fw-kMr">
@@ -360,6 +360,57 @@
             </objects>
             <point key="canvasLocation" x="1372" y="1809"/>
         </scene>
+        <!--Choose Store View Controller-->
+        <scene sceneID="ZgA-HK-WFh">
+            <objects>
+                <viewController id="pZx-Tg-a2J" customClass="ChooseStoreViewController" customModule="AisleFindIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Wj-ps-42T"/>
+                        <viewControllerLayoutGuide type="bottom" id="OGH-ah-KuK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="m58-Lh-PGo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="q6O-pF-CyW">
+                                <rect key="frame" x="125" y="200" width="350" height="350"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="350" id="S5w-lr-shh"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="350" id="vb7-Hn-jDM"/>
+                                </constraints>
+                            </mapView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="wPk-JX-sOt">
+                                <rect key="frame" x="61" y="113" width="479" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for Store" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaX-1n-fsQ">
+                                <rect key="frame" x="238" y="72" width="125" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wPk-JX-sOt" firstAttribute="leading" secondItem="m58-Lh-PGo" secondAttribute="leadingMargin" constant="41" id="96B-vp-p0L"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wPk-JX-sOt" secondAttribute="trailing" constant="40" id="9kE-0q-0up"/>
+                            <constraint firstItem="wPk-JX-sOt" firstAttribute="top" secondItem="IaX-1n-fsQ" secondAttribute="bottom" constant="20" id="P9L-50-dBh"/>
+                            <constraint firstItem="IaX-1n-fsQ" firstAttribute="centerX" secondItem="m58-Lh-PGo" secondAttribute="centerX" id="ZRg-92-JXg"/>
+                            <constraint firstItem="q6O-pF-CyW" firstAttribute="top" secondItem="wPk-JX-sOt" secondAttribute="bottom" constant="43" id="c2A-Za-dLf"/>
+                            <constraint firstItem="q6O-pF-CyW" firstAttribute="centerX" secondItem="m58-Lh-PGo" secondAttribute="centerX" id="lBE-zA-AW6"/>
+                            <constraint firstItem="IaX-1n-fsQ" firstAttribute="top" secondItem="9Wj-ps-42T" secondAttribute="bottom" constant="8" id="ol7-YU-5Tn"/>
+                            <constraint firstItem="OGH-ah-KuK" firstAttribute="top" secondItem="q6O-pF-CyW" secondAttribute="bottom" constant="50" id="ycY-uj-ejj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="q6O-pF-CyW" id="Lwa-ZE-vPW"/>
+                        <outlet property="searchMap" destination="wPk-JX-sOt" id="t51-yK-nY5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yea-Dq-sGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136" y="1370"/>
+        </scene>
         <!--Store Map View Controller-->
         <scene sceneID="FTc-L9-6TY">
             <objects>
@@ -372,7 +423,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AWm-AN-oi8">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AWm-AN-oi8">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LAD-aj-FJf"/>
@@ -450,7 +501,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rf7-yH-QCQ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="604" y="1895"/>
+            <point key="canvasLocation" x="744" y="2087"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fTe-Cc-wP1">

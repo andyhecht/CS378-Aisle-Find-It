@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A712779C1DB53819002504DB /* StoreMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712779B1DB53819002504DB /* StoreMapViewController.swift */; };
+		A74677371DBFDA8100D891BC /* ChooseStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74677361DBFDA8100D891BC /* ChooseStoreViewController.swift */; };
 		A75ACE701DB54649001397F7 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75ACE6F1DB54649001397F7 /* CollectionViewCell.swift */; };
 		A77962661DB94388000A7D64 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77962651DB94388000A7D64 /* MainTableViewController.swift */; };
 		A77962681DB94B18000A7D64 /* CreateListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77962671DB94B18000A7D64 /* CreateListTableViewController.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		A712779B1DB53819002504DB /* StoreMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMapViewController.swift; sourceTree = "<group>"; };
+		A74677361DBFDA8100D891BC /* ChooseStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseStoreViewController.swift; sourceTree = "<group>"; };
 		A75ACE6F1DB54649001397F7 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		A77962651DB94388000A7D64 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		A77962671DB94B18000A7D64 /* CreateListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateListTableViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				A79928E31DB0229100A37620 /* AppDelegate.swift */,
 				A79928E51DB0229100A37620 /* ViewController.swift */,
 				A79928E71DB0229100A37620 /* Main.storyboard */,
+				A74677361DBFDA8100D891BC /* ChooseStoreViewController.swift */,
 				A77962651DB94388000A7D64 /* MainTableViewController.swift */,
 				A75ACE6F1DB54649001397F7 /* CollectionViewCell.swift */,
 				A79928ED1DB0229100A37620 /* Assets.xcassets */,
@@ -296,6 +299,7 @@
 				A779626E1DB990C5000A7D64 /* ViewListTableViewController.swift in Sources */,
 				A75ACE701DB54649001397F7 /* CollectionViewCell.swift in Sources */,
 				A712779C1DB53819002504DB /* StoreMapViewController.swift in Sources */,
+				A74677371DBFDA8100D891BC /* ChooseStoreViewController.swift in Sources */,
 				B50DB3371DB6D99000E26B2B /* LoginProtocol.swift in Sources */,
 				A79928E41DB0229100A37620 /* AppDelegate.swift in Sources */,
 				A79929191DB02A3900A37620 /* CreateNewUserViewController.swift in Sources */,

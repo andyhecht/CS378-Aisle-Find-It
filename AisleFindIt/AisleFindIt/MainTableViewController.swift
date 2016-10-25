@@ -60,7 +60,7 @@ class MainTableViewController: UITableViewController {
         }else if(row == 1){
             self.performSegueWithIdentifier("CreateListSegueIdentifier", sender: self)
         }else if (row == 2){
-            self.performSegueWithIdentifier("StoreMapSegueIdentifier", sender: self)
+            self.performSegueWithIdentifier("ChooseStoreSegueIdentifier", sender: self)
         }
     }
 
