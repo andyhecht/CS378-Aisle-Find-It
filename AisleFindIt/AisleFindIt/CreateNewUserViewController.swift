@@ -2,7 +2,7 @@
 //  CreateNewUserViewController.swift
 //  AisleFindIt
 //
-//  Created by Andrew Hecht on 10/13/16.
+//  Created by Jamsheed Yazdani on 10/13/16.
 //  Copyright © 2016 hecht. All rights reserved.
 //
 
@@ -72,5 +72,16 @@ class CreateNewUserViewController: UIViewController, LoginProtocol {
             self.performSegueWithIdentifier("CreateNewLoginSegueIdentifier", sender: self)
         }
         
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user touches on the main view (outside the UITextField).
+    //
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }

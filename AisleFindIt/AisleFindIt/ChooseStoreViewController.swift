@@ -22,8 +22,6 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     var searchController:UISearchController!
     var locationManager: CLLocationManager!
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +35,7 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate, searchRadius * 2.0, searchRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
+        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude:30.2672, longitude: -97.7431), animated: false) // sets center of starting map in Austin
         
     }
     
@@ -45,11 +44,10 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
         // Dispose of any resources that can be recreated.
     }
     
-    func mapView(mapView: MKMapView!, didUpdateUserLocation
-        
+    func mapView(mapView: MKMapView, didUpdateUserLocation
         // Reset the center of the map to the user's location whenever the user moves
-        userLocation: MKUserLocation!) {
-        mapView.centerCoordinate = userLocation.location!.coordinate
+        userLocation: MKUserLocation) {
+        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), animated: false)
     }
     
     @IBAction func zoomIn(sender: AnyObject) {
@@ -102,12 +100,12 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
                 let long = placemark.location!.coordinate.longitude
                 let lat = placemark.location!.coordinate.latitude
                 
-                let newAnotation = MKPointAnnotation()
-                newAnotation.coordinate.latitude = lat
-                newAnotation.coordinate.longitude = long
-                newAnotation.title = item.name
-                newAnotation.subtitle = item.phoneNumber
-                self.mapView.addAnnotation(newAnotation)
+                let newAnnotation = MKPointAnnotation()
+                newAnnotation.coordinate.latitude = lat
+                newAnnotation.coordinate.longitude = long
+                newAnnotation.title = item.name
+                newAnnotation.subtitle = item.phoneNumber
+                self.mapView.addAnnotation(newAnnotation)
                 // Display the received items
             }
         }
@@ -122,5 +120,15 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
         } 
     }
 
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user touches on the main view (outside the UITextField).
+    //
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
 }

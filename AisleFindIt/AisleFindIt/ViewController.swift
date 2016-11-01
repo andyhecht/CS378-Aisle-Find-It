@@ -94,28 +94,27 @@ class ViewController: UIViewController, AddNewUser {
         let userNameEntry = userName.text!
         let passwordEntry = password.text!
         var loginValid = false
-        print("made loginValid variable")
+//        print("made loginValid variable")
         if(users.count < 1){
             loginAlert("Please create an account")
         }
         for i in users {
-            print(i.valueForKey("userName")! as! String)
-            print(userNameEntry)
-            print("starts for loop")
+//            print(i.valueForKey("userName")! as! String)
+//            print(userNameEntry)
+//            print("starts for loop")
             if(userNameEntry != "" && userNameEntry == (i.valueForKey("userName")! as! String)){
-                print("checked userName")
+//                print("checked userName")
                 if(passwordEntry != "" && passwordEntry == (i.valueForKey("password")! as! String)){
-                    print("checked password and made loginValid true")
+//                    print("checked password and made loginValid true")
                     loginValid = true
-                    
                     break
                 }else{
-                    print("password wrong")
+//                    print("password wrong")
                         loginAlertLabel?.text = "Username/Password do not match our records"
 //                        loginAlert("Username/Password do not match our records")
                 }
             }else{
-                print("userName wrong")
+//                print("userName wrong")
                     loginAlertLabel?.text = "Username/Password do not match our records"
             }
         }
@@ -146,6 +145,16 @@ class ViewController: UIViewController, AddNewUser {
         }
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user touches on the main view (outside the UITextField).
+    //
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
 }
 

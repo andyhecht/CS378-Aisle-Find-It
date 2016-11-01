@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol AddNewUser{
+protocol AddNewUser {
     func addNew(userName:String, password:String)
 }

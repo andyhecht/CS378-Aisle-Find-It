@@ -14,15 +14,12 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addItemText: UITextField!
-        
     
         override func viewDidLoad() {
             super.viewDidLoad()
             
             tableView.delegate = self
             tableView.dataSource = self
-            
-            list = [""]
             
             addItemText.placeholder = "Enter Item"
             
@@ -37,8 +34,6 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
             // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
             // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         }
-        
-        
         
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
@@ -88,7 +83,7 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
         // Override to support editing the table view.
         func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
             if editingStyle == .Delete {
-                // Delete the row from the data source
+                list.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             } else if editingStyle == .Insert {
                 // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -119,31 +114,15 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
         tableView.reloadData()
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
-    
-        /*
-         // Override to support rearranging the table view.
-         override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-         
-         }
-         */
-        
-        /*
-         // Override to support conditional rearranging of the table view.
-         override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-         // Return false if you do not want the item to be re-orderable.
-         return true
-         }
-         */
-        
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-         // Get the new view controller using segue.destinationViewController.
-         // Pass the selected object to the new view controller.
-         }
-         */
+    // Called when the user touches on the main view (outside the UITextField).
+    //
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
         
 }
