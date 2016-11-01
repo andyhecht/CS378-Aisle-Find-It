@@ -8,22 +8,36 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class ChooseStoreViewController: UIViewController, MKMapViewDelegate {
+class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var searchText: UITextField!
+    
+    var initialLocation = CLLocation(latitude: 40.759011, longitude: -73.984472)
 
+//    var initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
+    let searchRadius: CLLocationDistance = 2000
+    
     var searchController:UISearchController!
+    var locationManager: CLLocationManager!
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        // By default, for privacy the Map View does not show the user's current location.
-        // Setting the showsUserLocation property displays the blue ball on the map.
         mapView.showsUserLocation = true
-        
         mapView.delegate = self
+        
+        searchText.placeholder = "Enter Grocery Store"
+        
+//        let initialLocation = CLLocation(latitude: 30.2849, longitude: 97.7341)
+        
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate, searchRadius * 2.0, searchRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,15 +75,52 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate {
             mapView.mapType = MKMapType.Standard
         }
     }
-//    
-//    @IBAction func showSearchBar(sender: AnyObject) {
-//        searchController = UISearchController(searchResultsController: nil)
-//        searchController.hidesNavigationBarDuringPresentation = false
-//        self.searchController.searchBar.delegate = self
-//        present(searchController, animated: true, completion: nil)
-//    }
     
     
+    @IBAction func onSearch(sender: AnyObject) {
+//        let location = CLLocation(latitude: Double(searchText.text!)!, longitude: -157.829444)
+//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, searchRadius * 2.0, searchRadius * 2.0)
+//        mapView.setRegion(coordinateRegion, animated: true)
+        let allAnnotations = self.mapView.annotations
+        self.mapView.removeAnnotations(allAnnotations)
+        
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = searchText.text!
+        request.region = mapView.region
+        
+        //from <https://www.codementor.io/swift/tutorial/ios-tip-apple-mapkit-mklocalsearch>
+        
+        let search = MKLocalSearch(request: request)
+        search.startWithCompletionHandler { response, error in
+            guard let response = response else {
+                print("There was an error searching for: \(request.naturalLanguageQuery) error: \(error)")
+                return
+            }
+            
+            for item in response.mapItems {
+                let placemark = item.placemark
+                let long = placemark.location!.coordinate.longitude
+                let lat = placemark.location!.coordinate.latitude
+                
+                let newAnotation = MKPointAnnotation()
+                newAnotation.coordinate.latitude = lat
+                newAnotation.coordinate.longitude = long
+                newAnotation.title = item.name
+                newAnotation.subtitle = item.phoneNumber
+                self.mapView.addAnnotation(newAnotation)
+                // Display the received items
+            }
+        }
+        
+    }
     
-    @IBOutlet weak var searchMap: UISearchBar!
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if  segue.identifier == "StoreMapSegueIdentifier"{
+            segue.destinationViewController as? StoreMapViewController
+            //let teamIndex = tableView.indexPathForSelectedRow?.row
+        } 
+    }
+
+    
 }
