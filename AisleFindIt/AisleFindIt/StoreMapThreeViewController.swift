@@ -237,7 +237,7 @@ class StoreMapThreeViewController: UIViewController, UICollectionViewDataSource,
                 func display_image()
                 {
                     let img = UIImage(data: data!)
-                    let size = CGSize(width: img!.size.width/4, height: img!.size.height/4)
+                    let size = CGSize(width: img!.size.width/2, height: img!.size.height/2)
                     let rect = CGRectMake(0, 0, size.width, size.height)
                     
                     UIGraphicsBeginImageContextWithOptions(size, false, 1.0)

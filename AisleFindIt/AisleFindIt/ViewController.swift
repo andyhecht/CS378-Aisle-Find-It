@@ -18,6 +18,8 @@ class ViewController: UIViewController, AddNewUser {
     @IBOutlet weak var loginAlertLabel: UILabel!
     
     var delegate: LoginProtocol!
+    var loginCorrect: Bool = false
+//    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,7 @@ class ViewController: UIViewController, AddNewUser {
         // Do any additional setup after loading the view, typically from a nib.
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
+        
         
         let fetch = NSFetchRequest(entityName: "User")
         
@@ -110,12 +113,16 @@ class ViewController: UIViewController, AddNewUser {
                     break
                 }else{
 //                    print("password wrong")
+                    if(!loginValid) {
                         loginAlertLabel?.text = "Username/Password do not match our records"
+                    }
 //                        loginAlert("Username/Password do not match our records")
                 }
             }else{
 //                print("userName wrong")
+                if(!loginValid){
                     loginAlertLabel?.text = "Username/Password do not match our records"
+                }
             }
         }
         if(loginValid){

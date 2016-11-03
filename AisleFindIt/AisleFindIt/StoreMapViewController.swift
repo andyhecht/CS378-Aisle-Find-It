@@ -219,8 +219,8 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
             }
         }
         
-//        load_image("https://github.com/jyazdani/store-maps/blob/master/guide-austin-465-1.png?raw=true")
-        load_image("https://github.com/jyazdani/store-maps/blob/master/heb-bluestein-store-map.png?raw=true")
+        load_image("https://github.com/jyazdani/store-maps/blob/master/guide-austin-465-1.png?raw=true")
+  
     }
     
     func load_image(urlString:String)

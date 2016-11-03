@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A712779C1DB53819002504DB /* StoreMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712779B1DB53819002504DB /* StoreMapViewController.swift */; };
+		A72C953B1DCBD6AD00E01E1B /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72C953A1DCBD6AD00E01E1B /* LocationSearchTable.swift */; };
 		A74677371DBFDA8100D891BC /* ChooseStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74677361DBFDA8100D891BC /* ChooseStoreViewController.swift */; };
 		A75ACE701DB54649001397F7 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75ACE6F1DB54649001397F7 /* CollectionViewCell.swift */; };
 		A77962661DB94388000A7D64 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77962651DB94388000A7D64 /* MainTableViewController.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		A712779B1DB53819002504DB /* StoreMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMapViewController.swift; sourceTree = "<group>"; };
+		A72C953A1DCBD6AD00E01E1B /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		A74677361DBFDA8100D891BC /* ChooseStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseStoreViewController.swift; sourceTree = "<group>"; };
 		A75ACE6F1DB54649001397F7 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		A77962651DB94388000A7D64 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		A79928E21DB0229100A37620 /* AisleFindIt */ = {
 			isa = PBXGroup;
 			children = (
+				A72C953A1DCBD6AD00E01E1B /* LocationSearchTable.swift */,
 				A79928E31DB0229100A37620 /* AppDelegate.swift */,
 				A79928E51DB0229100A37620 /* ViewController.swift */,
 				A79928E71DB0229100A37620 /* Main.storyboard */,
@@ -312,6 +315,7 @@
 				A79929191DB02A3900A37620 /* CreateNewUserViewController.swift in Sources */,
 				B5E465B31DCBB2F900EB29C7 /* SettingsTableViewController.swift in Sources */,
 				B5E465AF1DCBACCA00EB29C7 /* StoreMapTwoViewController.swift in Sources */,
+				A72C953B1DCBD6AD00E01E1B /* LocationSearchTable.swift in Sources */,
 				A77962661DB94388000A7D64 /* MainTableViewController.swift in Sources */,
 				B50DB3391DB6D9B300E26B2B /* AddNewUser.swift in Sources */,
 			);

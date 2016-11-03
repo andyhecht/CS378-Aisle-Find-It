@@ -14,10 +14,12 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchText: UITextField!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var resultSearchController:UISearchController? = nil
     
     var initialLocation = CLLocation(latitude: 40.759011, longitude: -73.984472)
 
-//    var initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
     let searchRadius: CLLocationDistance = 2000
     
     var searchController:UISearchController!
@@ -31,12 +33,42 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         searchText.placeholder = "Enter Grocery Store"
         
+        //set up search bar
+        let locationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = resultSearchController?.searchBar
+        
+        locationSearchTable.mapView = mapView
+        //end search bar
+        
+        
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        
+        locationManager = CLLocationManager()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
 //        let initialLocation = CLLocation(latitude: 30.2849, longitude: 97.7341)
         
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate, searchRadius * 2.0, searchRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
-        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude:30.2672, longitude: -97.7431), animated: false) // sets center of starting map in Austin
+        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude:30.2849, longitude: -97.7431), animated: false) // sets center of starting map in Austin
         
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        var locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
     override func didReceiveMemoryWarning() {
@@ -97,6 +129,8 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
             
             for item in response.mapItems {
                 let placemark = item.placemark
+                let address = self.parseAddress(placemark)
+                
                 let long = placemark.location!.coordinate.longitude
                 let lat = placemark.location!.coordinate.latitude
                 
@@ -104,12 +138,37 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
                 newAnnotation.coordinate.latitude = lat
                 newAnnotation.coordinate.longitude = long
                 newAnnotation.title = item.name
-                newAnnotation.subtitle = item.phoneNumber
+                newAnnotation.subtitle = address
                 self.mapView.addAnnotation(newAnnotation)
                 // Display the received items
             }
         }
         
+    }
+    
+    //From <https://www.thorntech.com/2016/01/how-to-search-for-location-using-apples-mapkit/>
+    func parseAddress(selectedItem:MKPlacemark) -> String {
+        // put a space between "4" and "Melrose Place"
+        let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
+        // put a comma between street and city/state
+        let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
+        // put a space between "Washington" and "DC"
+        let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " " : ""
+        let addressLine = String(
+            format:"%@%@%@%@%@%@%@",
+            // street number
+            selectedItem.subThoroughfare ?? "",
+            firstSpace,
+            // street name
+            selectedItem.thoroughfare ?? "",
+            comma,
+            // city
+            selectedItem.locality ?? "",
+            secondSpace,
+            // state
+            selectedItem.administrativeArea ?? ""
+        )
+        return addressLine
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

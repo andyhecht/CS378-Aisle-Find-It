@@ -209,7 +209,7 @@ class StoreMapTwoViewController: UIViewController, UICollectionViewDataSource, U
         
         collectionView.delegate = self;
         collectionView.dataSource = self;
-        for i in 1 ..< 112 {
+        for i in 1 ..< 126 {
             items.append("\(i)")
         }
         
@@ -237,7 +237,7 @@ class StoreMapTwoViewController: UIViewController, UICollectionViewDataSource, U
                 func display_image()
                 {
                     let img = UIImage(data: data!)
-                    let size = CGSize(width: img!.size.width, height: img!.size.height)
+                    let size = CGSize(width: img!.size.width/1.3, height: img!.size.height/1.3)
                     let rect = CGRectMake(0, 0, size.width, size.height)
                     
                     UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
