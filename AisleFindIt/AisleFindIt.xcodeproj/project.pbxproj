@@ -24,6 +24,10 @@
 		A79929191DB02A3900A37620 /* CreateNewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79929181DB02A3900A37620 /* CreateNewUserViewController.swift */; };
 		B50DB3371DB6D99000E26B2B /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DB3361DB6D99000E26B2B /* LoginProtocol.swift */; };
 		B50DB3391DB6D9B300E26B2B /* AddNewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DB3381DB6D9B300E26B2B /* AddNewUser.swift */; };
+		B5E465AF1DCBACCA00EB29C7 /* StoreMapTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E465AE1DCBACCA00EB29C7 /* StoreMapTwoViewController.swift */; };
+		B5E465B11DCBAD1E00EB29C7 /* StoreMapTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E465B01DCBAD1E00EB29C7 /* StoreMapTableView.swift */; };
+		B5E465B31DCBB2F900EB29C7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E465B21DCBB2F900EB29C7 /* SettingsTableViewController.swift */; };
+		B5E465B51DCBB71500EB29C7 /* StoreMapThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E465B41DCBB71500EB29C7 /* StoreMapThreeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,10 @@
 		A79929181DB02A3900A37620 /* CreateNewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewUserViewController.swift; sourceTree = "<group>"; };
 		B50DB3361DB6D99000E26B2B /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
 		B50DB3381DB6D9B300E26B2B /* AddNewUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewUser.swift; sourceTree = "<group>"; };
+		B5E465AE1DCBACCA00EB29C7 /* StoreMapTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMapTwoViewController.swift; sourceTree = "<group>"; };
+		B5E465B01DCBAD1E00EB29C7 /* StoreMapTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMapTableView.swift; sourceTree = "<group>"; };
+		B5E465B21DCBB2F900EB29C7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		B5E465B41DCBB71500EB29C7 /* StoreMapThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMapThreeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,11 +136,15 @@
 				A79928F21DB0229100A37620 /* Info.plist */,
 				A79928EA1DB0229100A37620 /* AisleFindIt.xcdatamodeld */,
 				A79929181DB02A3900A37620 /* CreateNewUserViewController.swift */,
-				A712779B1DB53819002504DB /* StoreMapViewController.swift */,
 				B50DB3361DB6D99000E26B2B /* LoginProtocol.swift */,
 				B50DB3381DB6D9B300E26B2B /* AddNewUser.swift */,
 				A779626B1DB98751000A7D64 /* CreateListViewController.swift */,
 				A779626D1DB990C5000A7D64 /* ViewListTableViewController.swift */,
+				B5E465B21DCBB2F900EB29C7 /* SettingsTableViewController.swift */,
+				B5E465B01DCBAD1E00EB29C7 /* StoreMapTableView.swift */,
+				A712779B1DB53819002504DB /* StoreMapViewController.swift */,
+				B5E465AE1DCBACCA00EB29C7 /* StoreMapTwoViewController.swift */,
+				B5E465B41DCBB71500EB29C7 /* StoreMapThreeViewController.swift */,
 			);
 			path = AisleFindIt;
 			sourceTree = "<group>";
@@ -290,12 +302,16 @@
 				A79928E61DB0229100A37620 /* ViewController.swift in Sources */,
 				A79928EC1DB0229100A37620 /* AisleFindIt.xcdatamodeld in Sources */,
 				A779626E1DB990C5000A7D64 /* ViewListTableViewController.swift in Sources */,
+				B5E465B11DCBAD1E00EB29C7 /* StoreMapTableView.swift in Sources */,
 				A75ACE701DB54649001397F7 /* CollectionViewCell.swift in Sources */,
 				A712779C1DB53819002504DB /* StoreMapViewController.swift in Sources */,
 				A74677371DBFDA8100D891BC /* ChooseStoreViewController.swift in Sources */,
 				B50DB3371DB6D99000E26B2B /* LoginProtocol.swift in Sources */,
 				A79928E41DB0229100A37620 /* AppDelegate.swift in Sources */,
+				B5E465B51DCBB71500EB29C7 /* StoreMapThreeViewController.swift in Sources */,
 				A79929191DB02A3900A37620 /* CreateNewUserViewController.swift in Sources */,
+				B5E465B31DCBB2F900EB29C7 /* SettingsTableViewController.swift in Sources */,
+				B5E465AF1DCBACCA00EB29C7 /* StoreMapTwoViewController.swift in Sources */,
 				A77962661DB94388000A7D64 /* MainTableViewController.swift in Sources */,
 				B50DB3391DB6D9B300E26B2B /* AddNewUser.swift in Sources */,
 			);

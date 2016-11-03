@@ -1,20 +1,21 @@
 //
-//  StoreMapViewController.swift
+//  StoreMapTwoViewController.swift
 //  AisleFindIt
 //
-//  Created by Andrew Hecht on 10/17/16.
+//  Created by Jamsheed Yazdani on 11/3/16.
 //  Copyright © 2016 hecht. All rights reserved.
 //
 
 import UIKit
 
-class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
+class StoreMapTwoViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
     @IBOutlet weak var image_element: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     let reuseIdentifier = "Cell" // also enter this string as the cell identifier in the storyboard
     var items = ["0"]
+    var defaultList = ["Milk", "Batteries", "Bread"]
     var dictionary: [String:Int] = [
         "a/c filters" : 80,
         "air freshener" : 38,
@@ -219,8 +220,7 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
             }
         }
         
-//        load_image("https://github.com/jyazdani/store-maps/blob/master/guide-austin-465-1.png?raw=true")
-        load_image("https://github.com/jyazdani/store-maps/blob/master/heb-bluestein-store-map.png?raw=true")
+        load_image("https://github.com/jyazdani/store-maps/blob/master/heb-burnet-store-map.png?raw=true")
     }
     
     func load_image(urlString:String)
@@ -237,7 +237,7 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
                 func display_image()
                 {
                     let img = UIImage(data: data!)
-                    let size = CGSize(width: img!.size.width/4, height: img!.size.height/4)
+                    let size = CGSize(width: img!.size.width, height: img!.size.height)
                     let rect = CGRectMake(0, 0, size.width, size.height)
                     
                     UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
@@ -268,9 +268,9 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath)as! CollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-//        var first:String = list[0]
-//        var num = dictionary[first]
-//        print("value is: \(num)")
+        //        var first:String = list[0]
+        //        var num = dictionary[first]
+        //        print("value is: \(num)")
         
         if(pins.contains(indexPath.item)){
             cell.myLabel.text = ""
