@@ -420,26 +420,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for Store" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaX-1n-fsQ">
-                                <rect key="frame" x="238" y="72" width="125" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OFt-XV-FGR">
-                                <rect key="frame" x="73" y="106" width="251" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5l-5P-vFr">
-                                <rect key="frame" x="276" y="153" width="48" height="30"/>
-                                <state key="normal" title="Search"/>
-                                <connections>
-                                    <action selector="onSearch:" destination="pZx-Tg-a2J" eventType="touchUpInside" id="juq-qB-qd3"/>
-                                </connections>
-                            </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="q6O-pF-CyW">
-                                <rect key="frame" x="125" y="201" width="350" height="350"/>
+                                <rect key="frame" x="125" y="72" width="350" height="479"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmp-Yl-lyJ">
                                 <rect key="frame" x="260" y="562" width="81" height="30"/>
@@ -448,46 +430,25 @@
                                     <segue destination="Ffo-GE-bbV" kind="show" identifier="storeMapsTable" id="916-oR-dCe"/>
                                 </connections>
                             </button>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="8P4-MM-1Fv">
-                                <rect key="frame" x="338" y="99" width="242" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="pZx-Tg-a2J" id="bDm-Qj-Ggk"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8P4-MM-1Fv" firstAttribute="leading" secondItem="OFt-XV-FGR" secondAttribute="trailing" constant="14" id="0aA-iY-7eb"/>
                             <constraint firstItem="lmp-Yl-lyJ" firstAttribute="top" secondItem="q6O-pF-CyW" secondAttribute="bottom" constant="11" id="0fu-rg-ge2"/>
-                            <constraint firstItem="T5l-5P-vFr" firstAttribute="top" secondItem="OFt-XV-FGR" secondAttribute="bottom" constant="17" id="1tp-Nb-cY9"/>
-                            <constraint firstItem="OFt-XV-FGR" firstAttribute="leading" secondItem="m58-Lh-PGo" secondAttribute="leadingMargin" constant="53" id="5it-Z0-LAW"/>
                             <constraint firstItem="OGH-ah-KuK" firstAttribute="top" secondItem="q6O-pF-CyW" secondAttribute="bottom" constant="49" id="FvG-hH-Djh"/>
                             <constraint firstItem="lmp-Yl-lyJ" firstAttribute="centerX" secondItem="m58-Lh-PGo" secondAttribute="centerX" id="Jew-zD-uJl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8P4-MM-1Fv" secondAttribute="trailing" id="QlZ-DX-jbp"/>
-                            <constraint firstItem="q6O-pF-CyW" firstAttribute="top" secondItem="T5l-5P-vFr" secondAttribute="bottom" constant="18" id="Ud4-cY-tGs"/>
-                            <constraint firstItem="8P4-MM-1Fv" firstAttribute="leading" secondItem="IaX-1n-fsQ" secondAttribute="trailing" constant="-25" id="VTX-N7-v4r"/>
-                            <constraint firstItem="IaX-1n-fsQ" firstAttribute="centerX" secondItem="m58-Lh-PGo" secondAttribute="centerX" id="ZRg-92-JXg"/>
+                            <constraint firstItem="q6O-pF-CyW" firstAttribute="top" secondItem="9Wj-ps-42T" secondAttribute="bottom" constant="8" id="M2t-5k-S80"/>
                             <constraint firstItem="q6O-pF-CyW" firstAttribute="centerX" secondItem="m58-Lh-PGo" secondAttribute="centerX" id="aXr-QM-fGc"/>
-                            <constraint firstItem="T5l-5P-vFr" firstAttribute="centerX" secondItem="m58-Lh-PGo" secondAttribute="centerX" id="j2H-1t-mjy"/>
-                            <constraint firstItem="IaX-1n-fsQ" firstAttribute="top" secondItem="9Wj-ps-42T" secondAttribute="bottom" constant="8" id="ol7-YU-5Tn"/>
-                            <constraint firstItem="OFt-XV-FGR" firstAttribute="top" secondItem="IaX-1n-fsQ" secondAttribute="bottom" constant="13" id="s92-7E-LLV"/>
-                            <constraint firstItem="OFt-XV-FGR" firstAttribute="centerX" secondItem="m58-Lh-PGo" secondAttribute="centerX" constant="-101.5" id="xjY-P3-7IP"/>
-                            <constraint firstItem="T5l-5P-vFr" firstAttribute="top" secondItem="8P4-MM-1Fv" secondAttribute="bottom" constant="10" id="zLd-9Q-3nS"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="q6O-pF-CyW" id="Lwa-ZE-vPW"/>
-                        <outlet property="searchBar" destination="8P4-MM-1Fv" id="tNO-KN-HXB"/>
                         <outlet property="searchDisplayController" destination="IMz-sD-EYs" id="xC3-tf-W9M"/>
-                        <outlet property="searchText" destination="OFt-XV-FGR" id="XGg-vd-YdZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yea-Dq-sGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="r7E-yj-bks">
                     <connections>
                         <outlet property="delegate" destination="pZx-Tg-a2J" id="anp-ih-OSs"/>
-                        <outlet property="searchBar" destination="8P4-MM-1Fv" id="3e5-iH-UCz"/>
                         <outlet property="searchContentsController" destination="pZx-Tg-a2J" id="xG3-RV-Lmb"/>
                         <outlet property="searchResultsDataSource" destination="pZx-Tg-a2J" id="Ezd-6Y-6eg"/>
                         <outlet property="searchResultsDelegate" destination="pZx-Tg-a2J" id="2Wk-Sv-pj7"/>
@@ -984,5 +945,4 @@
     <inferredMetricsTieBreakers>
         <segue reference="jJz-bY-AUI"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

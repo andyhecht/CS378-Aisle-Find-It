@@ -25,7 +25,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Use Current Location? Choose &apos;No&apos; for Emulator</string>
+	<string>Use Current Location? Choose &apos;Don&apos;t Allow&apos; for Emulator</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>CFBundleDisplayName</key>

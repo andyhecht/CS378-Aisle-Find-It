@@ -10,13 +10,17 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+protocol HandleMapSearch {
+    func dropPinZoomIn(placemark:MKPlacemark)
+}
 
+class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+    
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var searchText: UITextField!
     @IBOutlet weak var searchBar: UISearchBar!
     
     var resultSearchController:UISearchController? = nil
+    var selectedPin:MKPlacemark? = nil
     
     var initialLocation = CLLocation(latitude: 40.759011, longitude: -73.984472)
 
@@ -31,8 +35,6 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
         mapView.showsUserLocation = true
         mapView.delegate = self
         
-        searchText.placeholder = "Enter Grocery Store"
-        
         //set up search bar
         let locationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
@@ -44,7 +46,10 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
         navigationItem.titleView = resultSearchController?.searchBar
         
         locationSearchTable.mapView = mapView
+        
+        locationSearchTable.handleMapSearchDelegate = self
         //end search bar
+        
         
         
         resultSearchController?.hidesNavigationBarDuringPresentation = false
@@ -106,44 +111,23 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if  segue.identifier == "StoreMapSegueIdentifier"{
+            segue.destinationViewController as? StoreMapViewController
+            //let teamIndex = tableView.indexPathForSelectedRow?.row
+        } 
+    }
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
-    @IBAction func onSearch(sender: AnyObject) {
-//        let location = CLLocation(latitude: Double(searchText.text!)!, longitude: -157.829444)
-//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, searchRadius * 2.0, searchRadius * 2.0)
-//        mapView.setRegion(coordinateRegion, animated: true)
-        let allAnnotations = self.mapView.annotations
-        self.mapView.removeAnnotations(allAnnotations)
-        
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = searchText.text!
-        request.region = mapView.region
-        
-        //from <https://www.codementor.io/swift/tutorial/ios-tip-apple-mapkit-mklocalsearch>
-        
-        let search = MKLocalSearch(request: request)
-        search.startWithCompletionHandler { response, error in
-            guard let response = response else {
-                print("There was an error searching for: \(request.naturalLanguageQuery) error: \(error)")
-                return
-            }
-            
-            for item in response.mapItems {
-                let placemark = item.placemark
-                let address = self.parseAddress(placemark)
-                
-                let long = placemark.location!.coordinate.longitude
-                let lat = placemark.location!.coordinate.latitude
-                
-                let newAnnotation = MKPointAnnotation()
-                newAnnotation.coordinate.latitude = lat
-                newAnnotation.coordinate.longitude = long
-                newAnnotation.title = item.name
-                newAnnotation.subtitle = address
-                self.mapView.addAnnotation(newAnnotation)
-                // Display the received items
-            }
-        }
-        
+    // Called when the user touches on the main view (outside the UITextField).
+    //
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     //From <https://www.thorntech.com/2016/01/how-to-search-for-location-using-apples-mapkit/>
@@ -170,24 +154,30 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
         )
         return addressLine
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if  segue.identifier == "StoreMapSegueIdentifier"{
-            segue.destinationViewController as? StoreMapViewController
-            //let teamIndex = tableView.indexPathForSelectedRow?.row
-        } 
-    }
-
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    // Called when the user touches on the main view (outside the UITextField).
-    //
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
 }
+
+extension ChooseStoreViewController: HandleMapSearch {
+    func dropPinZoomIn(placemark:MKPlacemark){
+        // cache the pin
+        
+        selectedPin = placemark
+        // clear existing pins
+        mapView.removeAnnotations(mapView.annotations)
+        
+        let address = self.parseAddress(placemark)
+        
+        let long = placemark.location!.coordinate.longitude
+        let lat = placemark.location!.coordinate.latitude
+        
+        let newAnnotation = MKPointAnnotation()
+        newAnnotation.coordinate.latitude = lat
+        newAnnotation.coordinate.longitude = long
+        newAnnotation.title = placemark.name
+        newAnnotation.subtitle = address
+        mapView.addAnnotation(newAnnotation)
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        mapView.setRegion(region, animated: true)
+    }
+}
+
