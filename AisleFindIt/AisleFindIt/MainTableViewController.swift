@@ -10,7 +10,7 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
 
-    var array:Array<String> = ["View Grocery List", "Create New Grocery List", "Choose Store", "Settings"]
+    var array:Array<String> = ["View Grocery List", "Create/Edit Grocery List", "Choose Store", "Settings"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +61,8 @@ class MainTableViewController: UITableViewController {
             self.performSegueWithIdentifier("CreateListSegueIdentifier", sender: self)
         }else if (row == 2){
             self.performSegueWithIdentifier("ChooseStoreSegueIdentifier", sender: self)
+        }else if (row == 3){
+            self.performSegueWithIdentifier("SettingsSegueIdentifier", sender: self)
         }
     }
 
