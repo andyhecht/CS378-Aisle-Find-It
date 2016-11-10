@@ -71,8 +71,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oBk-3u-Mkf">
+                                <rect key="frame" x="20" y="323" width="560" height="124"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login Unsuccessful" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqK-Pe-oVk">
-                                <rect key="frame" x="225" y="343" width="150" height="21"/>
+                                <rect key="frame" x="225" y="559" width="150" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -80,16 +83,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oBk-3u-Mkf" secondAttribute="bottom" constant="153" id="5ai-Gz-qIH"/>
                             <constraint firstAttribute="leadingMargin" secondItem="cSb-H1-3IO" secondAttribute="leading" id="Axx-HL-OE9"/>
+                            <constraint firstItem="bqK-Pe-oVk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="B3Z-jZ-x09"/>
                             <constraint firstItem="f1M-T3-aae" firstAttribute="top" secondItem="cSb-H1-3IO" secondAttribute="bottom" constant="24" id="BWR-hv-fNx"/>
                             <constraint firstItem="bgl-QS-DaO" firstAttribute="top" secondItem="mBg-6o-4Fb" secondAttribute="bottom" constant="15" id="Csu-v1-8zV"/>
                             <constraint firstItem="DCo-ca-fyh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FIY-TU-oKj"/>
                             <constraint firstItem="vhC-mi-wox" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Fnc-wY-aos"/>
+                            <constraint firstItem="oBk-3u-Mkf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HUo-JM-ahZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bgl-QS-DaO" secondAttribute="trailing" constant="123" id="Ihv-Vg-y2Q"/>
                             <constraint firstItem="bgl-QS-DaO" firstAttribute="leading" secondItem="f1M-T3-aae" secondAttribute="trailing" constant="8" id="Jam-mW-Oxu"/>
                             <constraint firstItem="bqK-Pe-oVk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KiR-eK-rx6"/>
+                            <constraint firstItem="oBk-3u-Mkf" firstAttribute="top" secondItem="ITe-Vr-WLk" secondAttribute="bottom" constant="8" id="McS-2k-tY8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oBk-3u-Mkf" secondAttribute="trailing" id="NOh-Ns-78R"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bqK-Pe-oVk" secondAttribute="bottom" constant="20" id="UUj-fv-adV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mBg-6o-4Fb" secondAttribute="trailing" constant="123" id="ask-f4-7Zv"/>
-                            <constraint firstItem="bqK-Pe-oVk" firstAttribute="top" secondItem="ITe-Vr-WLk" secondAttribute="bottom" constant="28" id="bQS-aW-hAB"/>
                             <constraint firstItem="YEf-aF-RFN" firstAttribute="top" secondItem="bgl-QS-DaO" secondAttribute="bottom" constant="16" id="c8b-8W-uaI"/>
                             <constraint firstItem="vhC-mi-wox" firstAttribute="top" secondItem="YEf-aF-RFN" secondAttribute="bottom" constant="18" id="hNH-Q1-kX6"/>
                             <constraint firstItem="f1M-T3-aae" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="12" id="mPY-Yr-7Ut"/>
@@ -98,10 +106,12 @@
                             <constraint firstItem="ITe-Vr-WLk" firstAttribute="top" secondItem="vhC-mi-wox" secondAttribute="bottom" constant="8" id="ppZ-3e-kNI"/>
                             <constraint firstItem="YEf-aF-RFN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sT6-4X-WlP"/>
                             <constraint firstItem="mBg-6o-4Fb" firstAttribute="leading" secondItem="cSb-H1-3IO" secondAttribute="trailing" constant="8" id="ydE-oA-qwo"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="oBk-3u-Mkf" secondAttribute="leading" id="zJf-r3-XVd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QD7-9s-wKP"/>
                     <connections>
+                        <outlet property="groceryCartImage" destination="oBk-3u-Mkf" id="Cjg-AE-NTX"/>
                         <outlet property="loginAlertLabel" destination="bqK-Pe-oVk" id="eVv-OL-AYw"/>
                         <outlet property="password" destination="bgl-QS-DaO" id="SA0-9C-tpl"/>
                         <outlet property="userName" destination="mBg-6o-4Fb" id="AC6-gP-nbo"/>
@@ -652,11 +662,12 @@
                     <connections>
                         <outlet property="collectionView" destination="AGi-zR-TAY" id="amn-G3-oqR"/>
                         <outlet property="image_element" destination="LAD-aj-FJf" id="Cyl-Za-QVY"/>
+                        <segue destination="CHT-0H-dmU" kind="show" identifier="viewListSegueID" id="Bgy-jC-d82"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rf7-yH-QCQ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136" y="2193"/>
+            <point key="canvasLocation" x="158" y="2125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fTe-Cc-wP1">
@@ -711,7 +722,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLj-AC-Gfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1619" y="1053"/>
+            <point key="canvasLocation" x="1672" y="1121"/>
         </scene>
         <!--Store Map Two View Controller-->
         <scene sceneID="EJn-rI-Ggz">
@@ -944,5 +955,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="jJz-bY-AUI"/>
+        <segue reference="Bgy-jC-d82"/>
     </inferredMetricsTieBreakers>
 </document>

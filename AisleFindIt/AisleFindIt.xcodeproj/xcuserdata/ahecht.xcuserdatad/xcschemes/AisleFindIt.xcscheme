@@ -55,7 +55,7 @@
             BlueprintIdentifier = "A79928DF1DB0229100A37620"
             BuildableName = "AisleFindIt.app"
             BlueprintName = "AisleFindIt"
-            ReferencedContainer = "container:../../../../../u/ahecht/Desktop/CS378-Aisle-Find-It-master/AisleFindIt/AisleFindIt.xcodeproj">
+            ReferencedContainer = "container:AisleFindIt.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -78,7 +78,7 @@
             BlueprintIdentifier = "A79928DF1DB0229100A37620"
             BuildableName = "AisleFindIt.app"
             BlueprintName = "AisleFindIt"
-            ReferencedContainer = "container:../../../../../u/ahecht/Desktop/CS378-Aisle-Find-It-master/AisleFindIt/AisleFindIt.xcodeproj">
+            ReferencedContainer = "container:AisleFindIt.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>

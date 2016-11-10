@@ -8,7 +8,9 @@
 
 import UIKit
 import CoreData
+import SpriteKit
 
+var cart : SKSpriteNode!
 var users = [NSManagedObject]()
 
 class ViewController: UIViewController, AddNewUser {
@@ -16,6 +18,7 @@ class ViewController: UIViewController, AddNewUser {
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginAlertLabel: UILabel!
+    @IBOutlet weak var groceryCartImage: UIImageView!
     
     var delegate: LoginProtocol!
     var loginCorrect: Bool = false
@@ -26,7 +29,10 @@ class ViewController: UIViewController, AddNewUser {
         
         userName.placeholder = "Enter User Name"
         password.placeholder = "Enter Password"
-        loginAlertLabel.text = ""
+        loginAlertLabel.text = "This is the Login Alert"
+        
+        groceryCartImage.image = UIImage(named: "shopping cart")
+        animateCartIn()
         
         // Do any additional setup after loading the view, typically from a nib.
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -97,6 +103,7 @@ class ViewController: UIViewController, AddNewUser {
         let userNameEntry = userName.text!
         let passwordEntry = password.text!
         var loginValid = false
+        
 //        print("made loginValid variable")
         if(users.count < 1){
             loginAlert("Please create an account")
@@ -131,6 +138,29 @@ class ViewController: UIViewController, AddNewUser {
 
     }
     
+    func animateCartIn(){
+    // Starting center value
+    self.groceryCartImage.center.x = self.view.center.x
+    
+    UIView.animateWithDuration (3.0, animations: {
+            self.groceryCartImage.center.x +=
+            self.view.bounds.width
+        })
+    }
+    
+    func animateCartOut() -> Int{
+        // Starting center value
+        self.groceryCartImage.center.x = self.view.center.x
+        
+        UIView.animateWithDuration (3.0, animations: {
+            self.groceryCartImage.center.x +=
+                self.view.bounds.width
+        }, completion: {(finished:Bool) in
+                // the code you put here will be compiled once the animation finishes
+        })
+        
+        return -1
+    }
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if(identifier == createUsernameSegueIdentifier){

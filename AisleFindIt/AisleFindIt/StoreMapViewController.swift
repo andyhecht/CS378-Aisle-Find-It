@@ -204,7 +204,7 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
         super.viewDidLoad()
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.Plain, target:self, action: nil)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: nil)
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(StoreMapViewController.logOut)), UIBarButtonItem(title:"View Current Grocery List      ", style:.Plain, target:self, action: #selector(StoreMapViewController.viewList))]
         
         collectionView.delegate = self;
         collectionView.dataSource = self;
@@ -218,6 +218,8 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
                 pins.append(location)
             }
         }
+        
+        
         
         load_image("https://github.com/jyazdani/store-maps/blob/master/guide-austin-465-1.png?raw=true")
   
@@ -290,5 +292,14 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func collectionView(collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
         
+    }
+    
+    func viewList(){
+        performSegueWithIdentifier("viewListSegueID", sender: nil)
+    }
+    
+    func logOut(){
+        print("Logging out")
+        navigationController?.popToRootViewControllerAnimated(true)
     }
 }
