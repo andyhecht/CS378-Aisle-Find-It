@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import MapKit
+
+var itemNames: [Int:String] = [
+    -1 : ""
+]
 
 class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
@@ -193,6 +198,7 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
         "wine" : 31
     ]
     
+    
     var pins = [-1]
     
     enum ErrorHandling:ErrorType
@@ -203,19 +209,30 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.reloadData()
+        
         navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.Plain, target:self, action: nil)
         navigationItem.rightBarButtonItems = [UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(StoreMapViewController.logOut)), UIBarButtonItem(title:"View Current Grocery List      ", style:.Plain, target:self, action: #selector(StoreMapViewController.viewList))]
         
         collectionView.delegate = self;
         collectionView.dataSource = self;
-        for i in 1 ..< 112 {
-            items.append("\(i)")
+        for i in 1 ..< 122 {
+            if(i<14){
+                items.append("\(i)")
+            }else{
+                items.append("")
+            }
         }
+        
+        itemNames.removeAll()
         
         for i in list {
             let item = i.lowercaseString // no matter what casing the user puts, item will be found
             if let location = dictionary[item]{
                 pins.append(location)
+                itemNames[location] = item
+            }else{
+                print("\(item) not found")
             }
         }
         
@@ -277,13 +294,35 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
         if(pins.contains(indexPath.item)){
             cell.myLabel.text = ""
             cell.image.image = UIImage(named: "pin")
+            
+            
         }else{
             cell.myLabel.text = ""
             cell.myLabel.text = self.items[indexPath.item]
+            cell.image.image = nil
         }
         //        cell.backgroundColor = UIColor.clearColor() // make cell more visible in our example project
         
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if(itemNames[indexPath.item] != nil){
+            let item = itemNames[indexPath.item]!
+            let alertController = UIAlertController(title: "Item Selected", message: "\(item)", preferredStyle: .Alert)
+            
+            let OKAction = UIAlertAction(title: "Cancel", style: .Default) { (action:UIAlertAction) in
+                print("You've pressed Cancel button");
+            }
+            let OKAction2 = UIAlertAction(title: "Delete", style: .Default) { (action:UIAlertAction) in
+                print("You've pressed Delete button");
+            }
+            alertController.addAction(OKAction)
+            alertController.addAction(OKAction2)
+            
+            self.presentViewController(alertController, animated: true, completion:nil)
+        }
+        print("Item Selected: \(itemNames[indexPath.item])")
     }
     
     func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
@@ -295,7 +334,8 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func viewList(){
-        performSegueWithIdentifier("viewListSegueID", sender: nil)
+        performSegueWithIdentifier("viewList2SegueIdentifier", sender: "one")
+        mapNumber = 1
     }
     
     func logOut(){

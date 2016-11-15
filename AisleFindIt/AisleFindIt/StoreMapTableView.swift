@@ -10,7 +10,7 @@ import UIKit
 
 class StoreMapTableView: UITableViewController{
     var array:Array<String> = ["HEB 7th Street Location", "HEB Burnet Road Location", "HEB Ed Bluestein Location"]
-    var addresses:Array<String> = ["2701 E 7th St., Austin, TX, 78702", "5808 Burnet Rd., Austin, TX, 78756", "7112 Ed Bluestein, Austin, TX, 78723"]
+    var addresses:Array<String> = ["2701 E 7th St., Austin, TX, 78702", "5808 Burnet Rd., Austin, TX, 78756", "7112 Ed Bluestein Blvd., Austin, TX, 78723"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

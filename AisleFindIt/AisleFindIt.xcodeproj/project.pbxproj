@@ -11,6 +11,7 @@
 		A72C953B1DCBD6AD00E01E1B /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72C953A1DCBD6AD00E01E1B /* LocationSearchTable.swift */; };
 		A74677371DBFDA8100D891BC /* ChooseStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74677361DBFDA8100D891BC /* ChooseStoreViewController.swift */; };
 		A75ACE701DB54649001397F7 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75ACE6F1DB54649001397F7 /* CollectionViewCell.swift */; };
+		A7701BA01DDBA07200087D3A /* ViewList2TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7701B9F1DDBA07200087D3A /* ViewList2TableViewController.swift */; };
 		A77962661DB94388000A7D64 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77962651DB94388000A7D64 /* MainTableViewController.swift */; };
 		A779626C1DB98751000A7D64 /* CreateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A779626B1DB98751000A7D64 /* CreateListViewController.swift */; };
 		A779626E1DB990C5000A7D64 /* ViewListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A779626D1DB990C5000A7D64 /* ViewListTableViewController.swift */; };
@@ -53,6 +54,7 @@
 		A72C953A1DCBD6AD00E01E1B /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		A74677361DBFDA8100D891BC /* ChooseStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseStoreViewController.swift; sourceTree = "<group>"; };
 		A75ACE6F1DB54649001397F7 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		A7701B9F1DDBA07200087D3A /* ViewList2TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewList2TableViewController.swift; sourceTree = "<group>"; };
 		A77962651DB94388000A7D64 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		A779626B1DB98751000A7D64 /* CreateListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateListViewController.swift; sourceTree = "<group>"; };
 		A779626D1DB990C5000A7D64 /* ViewListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewListTableViewController.swift; sourceTree = "<group>"; };
@@ -131,19 +133,20 @@
 				A79928E31DB0229100A37620 /* AppDelegate.swift */,
 				A79928E51DB0229100A37620 /* ViewController.swift */,
 				A79928E71DB0229100A37620 /* Main.storyboard */,
-				A74677361DBFDA8100D891BC /* ChooseStoreViewController.swift */,
 				A77962651DB94388000A7D64 /* MainTableViewController.swift */,
 				A75ACE6F1DB54649001397F7 /* CollectionViewCell.swift */,
 				A79928ED1DB0229100A37620 /* Assets.xcassets */,
 				A79928EF1DB0229100A37620 /* LaunchScreen.storyboard */,
-				A79928F21DB0229100A37620 /* Info.plist */,
 				A79928EA1DB0229100A37620 /* AisleFindIt.xcdatamodeld */,
+				A79928F21DB0229100A37620 /* Info.plist */,
 				A79929181DB02A3900A37620 /* CreateNewUserViewController.swift */,
 				B50DB3361DB6D99000E26B2B /* LoginProtocol.swift */,
 				B50DB3381DB6D9B300E26B2B /* AddNewUser.swift */,
 				A779626B1DB98751000A7D64 /* CreateListViewController.swift */,
 				A779626D1DB990C5000A7D64 /* ViewListTableViewController.swift */,
+				A7701B9F1DDBA07200087D3A /* ViewList2TableViewController.swift */,
 				B5E465B21DCBB2F900EB29C7 /* SettingsTableViewController.swift */,
+				A74677361DBFDA8100D891BC /* ChooseStoreViewController.swift */,
 				B5E465B01DCBAD1E00EB29C7 /* StoreMapTableView.swift */,
 				A712779B1DB53819002504DB /* StoreMapViewController.swift */,
 				B5E465AE1DCBACCA00EB29C7 /* StoreMapTwoViewController.swift */,
@@ -306,6 +309,7 @@
 				A79928EC1DB0229100A37620 /* AisleFindIt.xcdatamodeld in Sources */,
 				A779626E1DB990C5000A7D64 /* ViewListTableViewController.swift in Sources */,
 				B5E465B11DCBAD1E00EB29C7 /* StoreMapTableView.swift in Sources */,
+				A7701BA01DDBA07200087D3A /* ViewList2TableViewController.swift in Sources */,
 				A75ACE701DB54649001397F7 /* CollectionViewCell.swift in Sources */,
 				A712779C1DB53819002504DB /* StoreMapViewController.swift in Sources */,
 				A74677371DBFDA8100D891BC /* ChooseStoreViewController.swift in Sources */,

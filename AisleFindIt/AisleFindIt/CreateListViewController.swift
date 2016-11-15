@@ -9,6 +9,7 @@
 import UIKit
 
 var list = [""]
+var mapNumber: Int = -1
 
 class CreateListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -116,6 +117,14 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        if(list[0] == ""){
+            list.insert(addItemText.text!, atIndex: 0)
+            list.popLast()
+        }else{
+            list.append((addItemText.text)!);
+        }
+        addItemText.text = ""
+        tableView.reloadData()
         return true
     }
     

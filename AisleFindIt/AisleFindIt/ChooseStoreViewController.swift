@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 import CoreLocation
 
+var storeAddress: String?
+
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
 }
@@ -62,6 +64,8 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
         if CLLocationManager.locationServicesEnabled() {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
+        }else{
+            
         }
 //        let initialLocation = CLLocation(latitude: 30.2849, longitude: 97.7341)
         
@@ -72,7 +76,7 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        var locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
@@ -111,13 +115,31 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if  segue.identifier == "StoreMapSegueIdentifier"{
-            segue.destinationViewController as? StoreMapViewController
-            //let teamIndex = tableView.indexPathForSelectedRow?.row
-        } 
-    }
+//    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+//        if(identifier == "storeChosenSegueIdentifier"){
+//            if(storeAddress == "2701 E 7th St, Austin TX" || storeAddress == "5808 Burnet Rd, Austin TX"){
+//                return true
+//            }else{
+//                print("Store Address: \(storeAddress)")
+//                return false
+//            }
+//        }else{
+//            return false
+//        }
+//    }
+//    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if  segue.identifier == "storeChosenSegueIdentifier"{
+//            if(storeAddress == "2701 E 7th St, Austin TX"){
+//                segue.destinationViewController as? StoreMapViewController
+//            }else if(storeAddress == "5808 Burnet Rd, Austin TX"){
+//                
+//            }else if(storeAddress == "7112 Ed Bluestein, Austin TX"){
+//                
+//            }
+//            //let teamIndex = tableView.indexPathForSelectedRow?.row
+//        }
+//    }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -152,6 +174,7 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
             // state
             selectedItem.administrativeArea ?? ""
         )
+        storeAddress = addressLine
         return addressLine
     }
 }
@@ -178,6 +201,26 @@ extension ChooseStoreViewController: HandleMapSearch {
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
+    }
+    
+    @IBAction func onGoToStore(sender: AnyObject) {
+        if(storeAddress == "2701 E 7th St, Austin TX"){
+            performSegueWithIdentifier("toStoreMap1Segue", sender: self)
+        }else if(storeAddress == "5808 Burnet Rd, Austin TX"){
+            performSegueWithIdentifier("toStoreMap2Segue", sender: self)
+        }else if(storeAddress == "7112 Ed Bluestein Blvd, Austin TX"){
+            performSegueWithIdentifier("toStoreMap3Segue", sender: self)
+        }else{
+            let alertController = UIAlertController(title: "Sorry for the Inconvenience", message: "The map for this store does not exist.", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction) in
+                print("You've pressed OK button");
+            }
+            alertController.addAction(OKAction)
+            self.presentViewController(alertController, animated: true, completion:nil)
+
+            print("Store Address: \(storeAddress)")
+        }
+
     }
 }
 

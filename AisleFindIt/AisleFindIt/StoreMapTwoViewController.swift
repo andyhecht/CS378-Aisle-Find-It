@@ -99,7 +99,7 @@ class StoreMapTwoViewController: UIViewController, UICollectionViewDataSource, U
         "gravy mixes" : 65,
         "greeting cards" : 60,
         "hair accessories" : 44,
-        "hare care" : 72,
+        "hair care" : 72,
         "hair color" : 30,
         "hardware" : 43,
         "hispanic foods" : 38,
@@ -203,19 +203,29 @@ class StoreMapTwoViewController: UIViewController, UICollectionViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.reloadData()
+        
         navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.Plain, target:self, action: nil)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: nil)
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(StoreMapTwoViewController.logOut)), UIBarButtonItem(title:"View Current Grocery List      ", style:.Plain, target:self, action: #selector(StoreMapTwoViewController.viewList))]
+        
         
         collectionView.delegate = self;
         collectionView.dataSource = self;
         for i in 1 ..< 126 {
-            items.append("\(i)")
+            if(i<14){
+                items.append("\(i)")
+            }else{
+                items.append("")
+            }
         }
         
+        
+        itemNames.removeAll()
         for i in list {
             let item = i.lowercaseString // no matter what casing the user puts, item will be found
             if let location = dictionary[item]{
                 pins.append(location)
+                itemNames[location] = item
             }
         }
         
@@ -259,6 +269,26 @@ class StoreMapTwoViewController: UIViewController, UICollectionViewDataSource, U
     
     // MARK: - UICollectionViewDelegate protocol
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if(itemNames[indexPath.item] != nil){
+            let item = itemNames[indexPath.item]!
+            let alertController = UIAlertController(title: "Item Selected", message: "\(item)", preferredStyle: .Alert)
+            
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction) in
+                print("You've pressed OK button");
+            }
+            let OKAction2 = UIAlertAction(title: "Delete", style: .Default) { (action:UIAlertAction) in
+                print("You've pressed Delete button");
+            }
+            alertController.addAction(OKAction)
+            alertController.addAction(OKAction2)
+
+            
+            self.presentViewController(alertController, animated: true, completion:nil)
+        }
+        print("Item Selected: \(itemNames[indexPath.item])")
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.items.count
     }
@@ -288,6 +318,15 @@ class StoreMapTwoViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     func collectionView(collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
-        
+    }
+    
+    func viewList(){
+        performSegueWithIdentifier("viewList2SegueIdentifier", sender: "two")
+        mapNumber = 2
+    }
+    
+    func logOut(){
+        print("Logging out")
+        navigationController?.popToRootViewControllerAnimated(true)
     }
 }
