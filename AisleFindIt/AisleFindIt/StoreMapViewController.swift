@@ -209,13 +209,14 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.reloadData()
-        
         navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.Plain, target:self, action: nil)
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(StoreMapViewController.logOut)), UIBarButtonItem(title:"View Current Grocery List      ", style:.Plain, target:self, action: #selector(StoreMapViewController.viewList))]
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(StoreMapViewController.logOut)), UIBarButtonItem(title:"View Current Grocery List     ", style:.Plain, target:self, action: #selector(StoreMapViewController.viewList))]
         
-        collectionView.delegate = self;
-        collectionView.dataSource = self;
+        self.collectionView.delegate = self;
+        self.collectionView.dataSource = self;
+        
+        items.removeAll()
+        
         for i in 1 ..< 122 {
             if(i<14){
                 items.append("\(i)")
@@ -225,6 +226,7 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
         }
         
         itemNames.removeAll()
+        pins.removeAll()
         
         for i in list {
             let item = i.lowercaseString // no matter what casing the user puts, item will be found
@@ -236,10 +238,41 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
             }
         }
         
-        
+        self.collectionView.reloadData()
         
         load_image("https://github.com/jyazdani/store-maps/blob/master/guide-austin-465-1.png?raw=true")
   
+    }
+    
+    //coming back from viewing list
+    override func viewDidAppear(animated: Bool) {
+        self.collectionView.delegate = self;
+        self.collectionView.dataSource = self;
+        items.removeAll()
+        
+        for i in 1 ..< 122 {
+            if(i<14){
+                items.append("\(i)")
+            }else{
+                items.append("")
+            }
+        }
+        
+        itemNames.removeAll()
+        pins.removeAll()
+        
+        for i in list {
+            let item = i.lowercaseString // no matter what casing the user puts, item will be found
+            if let location = dictionary[item]{
+                pins.append(location)
+                itemNames[location] = item
+            }else{
+                print("\(item) not found")
+            }
+        }
+        dispatch_async(dispatch_get_main_queue()){
+            self.collectionView.reloadData()
+        }
     }
     
     func load_image(urlString:String)
@@ -287,14 +320,11 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath)as! CollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-//        var first:String = list[0]
-//        var num = dictionary[first]
-//        print("value is: \(num)")
-        
+    
         if(pins.contains(indexPath.item)){
             cell.myLabel.text = ""
             cell.image.image = UIImage(named: "pin")
-            
+        
             
         }else{
             cell.myLabel.text = ""
@@ -311,11 +341,21 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
             let item = itemNames[indexPath.item]!
             let alertController = UIAlertController(title: "Item Selected", message: "\(item)", preferredStyle: .Alert)
             
-            let OKAction = UIAlertAction(title: "Cancel", style: .Default) { (action:UIAlertAction) in
-                print("You've pressed Cancel button");
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction) in
+                print("You've pressed OK button");
             }
             let OKAction2 = UIAlertAction(title: "Delete", style: .Default) { (action:UIAlertAction) in
                 print("You've pressed Delete button");
+                list = list.filter() {$0 != item}
+                
+                let location = self.dictionary[item]
+                self.pins = self.pins.filter() {$0 != location}
+                
+                itemNames.removeValueForKey(location!)
+
+                dispatch_async(dispatch_get_main_queue()){
+                    self.collectionView.reloadData()
+                }
             }
             alertController.addAction(OKAction)
             alertController.addAction(OKAction2)

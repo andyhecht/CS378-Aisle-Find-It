@@ -199,13 +199,13 @@ class StoreMapThreeViewController: UIViewController, UICollectionViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView.reloadData()
-
         navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.Plain, target:self, action: nil)
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(StoreMapThreeViewController.logOut)), UIBarButtonItem(title:"View Current Grocery List      ", style:.Plain, target:self, action: #selector(StoreMapThreeViewController.viewList))]
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(StoreMapThreeViewController.logOut)), UIBarButtonItem(title:"View Current Grocery List     ", style:.Plain, target:self, action: #selector(StoreMapThreeViewController.viewList))]
         
-        collectionView.delegate = self;
-        collectionView.dataSource = self;
+        self.collectionView.delegate = self;
+        self.collectionView.dataSource = self;
+        
+        items.removeAll()
         for i in 1 ..< 96 {
             if(i<12){
                 items.append("\(i)")
@@ -215,6 +215,8 @@ class StoreMapThreeViewController: UIViewController, UICollectionViewDataSource,
         }
         
         itemNames.removeAll()
+        pins.removeAll()
+        
         for i in list {
             let item = i.lowercaseString // no matter what casing the user puts, item will be found
             if let location = dictionary[item]{
@@ -223,9 +225,44 @@ class StoreMapThreeViewController: UIViewController, UICollectionViewDataSource,
             }
         }
         
+        dispatch_async(dispatch_get_main_queue()){
+            self.collectionView.reloadData()
+        }
+        
         load_image("https://github.com/jyazdani/store-maps/blob/master/heb-bluestein-store-map.png?raw=true")
     }
     
+    //coming back from viewing list
+    override func viewDidAppear(animated: Bool) {
+        self.collectionView.delegate = self;
+        self.collectionView.dataSource = self;
+        items.removeAll()
+        
+        for i in 1 ..< 96 {
+            if(i<12){
+                items.append("\(i)")
+            }else{
+                items.append("")
+            }
+        }
+        
+        itemNames.removeAll()
+        pins.removeAll()
+        
+        for i in list {
+            let item = i.lowercaseString // no matter what casing the user puts, item will be found
+            if let location = dictionary[item]{
+                pins.append(location)
+                itemNames[location] = item
+            }else{
+                print("\(item) not found")
+            }
+        }
+        dispatch_async(dispatch_get_main_queue()){
+            self.collectionView.reloadData()
+        }
+    }
+
     func load_image(urlString:String)
     {
         let imgURL: NSURL = NSURL(string: urlString)!
@@ -273,6 +310,17 @@ class StoreMapThreeViewController: UIViewController, UICollectionViewDataSource,
             }
             let OKAction2 = UIAlertAction(title: "Delete", style: .Default) { (action:UIAlertAction) in
                 print("You've pressed Delete button");
+                list = list.filter() {$0 != item}
+                
+                let location = self.dictionary[item]
+                self.pins = self.pins.filter() {$0 != location}
+                
+                itemNames.removeValueForKey(location!)
+                
+                dispatch_async(dispatch_get_main_queue()){
+                    self.collectionView.reloadData()
+                }
+
             }
             alertController.addAction(OKAction)
             alertController.addAction(OKAction2)
@@ -300,6 +348,7 @@ class StoreMapThreeViewController: UIViewController, UICollectionViewDataSource,
         }else{
             cell.myLabel.text = ""
             cell.myLabel.text = self.items[indexPath.item]
+            cell.image.image = nil
         }
         //        cell.backgroundColor = UIColor.clearColor() // make cell more visible in our example project
         

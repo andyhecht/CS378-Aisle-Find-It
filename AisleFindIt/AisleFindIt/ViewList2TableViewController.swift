@@ -59,9 +59,10 @@ class ViewList2TableViewController: UITableViewController {
             if(mapNumber != 3){
                 column = detailText!%14
             }else{
+                "MAP NUMBER IS 3!!"
                 column = detailText!%12
             }
-            cell.detailTextLabel?.text = "Column: \(column)"
+            cell.detailTextLabel?.text = "Column: \(column + 1)"
         }else{
             cell.detailTextLabel?.text = "Item not found in store"
         }

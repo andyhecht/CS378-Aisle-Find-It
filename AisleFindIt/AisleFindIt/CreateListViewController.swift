@@ -105,23 +105,50 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
     
     
     @IBAction func onAddItemClicked(sender: AnyObject) {
-        if(list[0] == ""){
-            list.insert(addItemText.text!, atIndex: 0)
-            list.popLast()
+        let itm = addItemText.text!
+        if(itm != ""){
+            if(!list.isEmpty && list[0] == ""){
+                list.insert(addItemText.text!, atIndex: 0)
+                list.popLast()
+            }else{
+                list.append((addItemText.text)!);
+            }
         }else{
-            list.append((addItemText.text)!);
+            print("here")
+            let alertController = UIAlertController(title: "Please Enter Valid Item", message: "Text is empty.", preferredStyle: .Alert)
+            
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction) in
+                print("You've pressed OK button");
+            }
+            alertController.addAction(OKAction)
+            
+            self.presentViewController(alertController, animated: true, completion:nil)
         }
+
         addItemText.text = ""
         tableView.reloadData()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        if(list[0] == ""){
-            list.insert(addItemText.text!, atIndex: 0)
-            list.popLast()
+        let itm = addItemText.text!
+        if(itm != ""){
+            if(list[0] == ""){
+                list.insert(addItemText.text!, atIndex: 0)
+                list.popLast()
+            }else{
+                list.append((addItemText.text)!);
+            }
         }else{
-            list.append((addItemText.text)!);
+            print("here")
+            let alertController = UIAlertController(title: "Please Enter Valid Item", message: "Text is empty.", preferredStyle: .Alert)
+            
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction) in
+                print("You've pressed OK button");
+            }
+            alertController.addAction(OKAction)
+            
+            self.presentViewController(alertController, animated: true, completion:nil)
         }
         addItemText.text = ""
         tableView.reloadData()
