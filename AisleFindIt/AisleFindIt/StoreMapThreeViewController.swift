@@ -207,11 +207,11 @@ class StoreMapThreeViewController: UIViewController, UICollectionViewDataSource,
         
         items.removeAll()
         for i in 1 ..< 96 {
-            if(i<12){
+//            if(i<12){
                 items.append("\(i)")
-            }else{
-                items.append("")
-            }
+//            }else{
+//                items.append("")
+//            }
         }
         
         itemNames.removeAll()

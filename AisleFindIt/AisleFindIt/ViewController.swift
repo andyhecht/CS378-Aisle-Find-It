@@ -12,6 +12,7 @@ import SpriteKit
 
 var cart : SKSpriteNode!
 var users = [NSManagedObject]()
+var userNames = [""]
 
 class ViewController: UIViewController, AddNewUser {
     
@@ -79,6 +80,13 @@ class ViewController: UIViewController, AddNewUser {
         
         user.setValue(userName, forKey: "userName")
         user.setValue(password, forKey: "password")
+        
+        // keep track of each userName to check for multiples
+        if(userNames[0] == ""){
+            userNames[0] = userName
+        }else{
+            userNames.append(userName)
+        }
         
         do{
             try managedContext.save()

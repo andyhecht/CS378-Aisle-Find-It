@@ -46,7 +46,7 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
         "biscuit mix" : 62,
         "bleach" : 38,
         "boxed dinner" : 6,
-        "bread" : 34,
+        "bread" : 76,
         "broom" : 66,
         "mop" : 66,
         "cake mixes" : 76,
@@ -221,7 +221,7 @@ class StoreMapViewController: UIViewController, UICollectionViewDataSource, UICo
             if(i<14){
                 items.append("\(i)")
             }else{
-                items.append("")
+                items.append("\(i)")
             }
         }
         

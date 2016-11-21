@@ -48,10 +48,10 @@ class CreateNewUserViewController: UIViewController, LoginProtocol {
     }
     
     @IBAction func onLoginClicked(sender: AnyObject) {
-        let userNameEntry = NSCharacterSet.init(charactersInString: userName.text!)
-        
         let userNameText = userName.text!
         let passwordText = password.text!
+        
+        let userNameEntry = NSCharacterSet.init(charactersInString: userName.text!)
         
         var loginValid = false
         
@@ -63,7 +63,10 @@ class CreateNewUserViewController: UIViewController, LoginProtocol {
             notify("Please enter a Password")
         }else if(passwordText != reEnterPassword.text!){
             notify("Passwords do not match.") // bring up alert that says "Passwords do not match!"
-        }else{
+        }else if(userNames.contains(userNameText)){
+            notify("Username is already taken. Please enter a new one")
+        }
+        else{
             loginValid = true
             delegate.addNew(userNameText, password: passwordText)
         }
