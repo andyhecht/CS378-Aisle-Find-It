@@ -13,6 +13,7 @@ import SpriteKit
 var cart : SKSpriteNode!
 var users = [NSManagedObject]()
 var userNames = [""]
+var currentUser:String = ""
 
 class ViewController: UIViewController, AddNewUser {
     
@@ -80,6 +81,7 @@ class ViewController: UIViewController, AddNewUser {
         
         user.setValue(userName, forKey: "userName")
         user.setValue(password, forKey: "password")
+        user.setValue("", forKey: "homeAddress")
         
         // keep track of each userName to check for multiples
         if(userNames[0] == ""){
@@ -141,6 +143,7 @@ class ViewController: UIViewController, AddNewUser {
             }
         }
         if(loginValid){
+            currentUser = userNameEntry
             self.performSegueWithIdentifier(loginSegueIdentifier, sender: self)
         }
 

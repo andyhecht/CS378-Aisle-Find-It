@@ -298,7 +298,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="IXW-qO-2VY" kind="show" identifier="SettingsSegueIdentifier" id="xkh-HF-exr"/>
+                                    <segue destination="nYb-aF-cce" kind="show" identifier="SettingsSegueIdentifier" id="g07-kD-VHX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -312,31 +312,66 @@
             </objects>
             <point key="canvasLocation" x="889" y="1116"/>
         </scene>
-        <!--Settings Table View Controller-->
-        <scene sceneID="6Ov-hj-AHg">
+        <!--Settings View Controller-->
+        <scene sceneID="7f6-Bf-qkA">
             <objects>
-                <tableViewController id="IXW-qO-2VY" customClass="SettingsTableViewController" customModule="AisleFindIt" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="SvD-m0-OoK">
+                <viewController id="nYb-aF-cce" customClass="SettingsViewController" customModule="AisleFindIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="87y-7V-JaZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="IWG-MT-2fk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kie-vD-Gb0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vPd-dW-7Mp">
+                                <rect key="frame" x="184" y="109" width="233" height="29"/>
+                                <segments>
+                                    <segment title="Home Address"/>
+                                    <segment title="Current Location"/>
+                                </segments>
+                            </segmentedControl>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tad-N3-nz7">
+                                <rect key="frame" x="107" y="157" width="387" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="387" id="4KD-yc-Wh0"/>
+                                    <constraint firstAttribute="height" constant="30" id="oL6-WR-OUB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vv-aw-4EJ">
+                                <rect key="frame" x="283" y="212" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveAddress:" destination="nYb-aF-cce" eventType="touchUpInside" id="Uiq-8U-Rzf"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7u5-eQ-Xr4">
+                                <rect key="frame" x="268" y="64" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="kWp-Gp-1qv">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kWp-Gp-1qv" id="bGh-gZ-ULg">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="IXW-qO-2VY" id="8N1-7W-KRU"/>
-                            <outlet property="delegate" destination="IXW-qO-2VY" id="wm9-M1-bDG"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aR1-ZF-Sba" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="7u5-eQ-Xr4" firstAttribute="centerX" secondItem="Kie-vD-Gb0" secondAttribute="centerX" id="1KY-GE-GAL"/>
+                            <constraint firstItem="7u5-eQ-Xr4" firstAttribute="top" secondItem="87y-7V-JaZ" secondAttribute="bottom" id="5vS-Z9-Wh9"/>
+                            <constraint firstItem="vPd-dW-7Mp" firstAttribute="centerX" secondItem="Kie-vD-Gb0" secondAttribute="centerX" id="CyW-ea-b1r"/>
+                            <constraint firstItem="Tad-N3-nz7" firstAttribute="centerX" secondItem="Kie-vD-Gb0" secondAttribute="centerX" id="LAf-Nq-drS"/>
+                            <constraint firstItem="vPd-dW-7Mp" firstAttribute="top" secondItem="7u5-eQ-Xr4" secondAttribute="bottom" constant="24" id="YGB-6Y-jSQ"/>
+                            <constraint firstItem="Tad-N3-nz7" firstAttribute="top" secondItem="vPd-dW-7Mp" secondAttribute="bottom" constant="20" id="mPb-9K-hz5"/>
+                            <constraint firstItem="2vv-aw-4EJ" firstAttribute="top" secondItem="Tad-N3-nz7" secondAttribute="bottom" constant="25" id="p7B-vU-lcC"/>
+                            <constraint firstItem="2vv-aw-4EJ" firstAttribute="centerX" secondItem="Kie-vD-Gb0" secondAttribute="centerX" id="u0G-xb-goq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="address" destination="Tad-N3-nz7" id="Bfz-IY-yxb"/>
+                        <outlet property="locationControl" destination="vPd-dW-7Mp" id="l3I-m4-oxe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TU3-TK-AfP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="889" y="1850"/>
         </scene>
@@ -1003,10 +1038,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="I4c-g7-Lea"/>
         <segue reference="jJz-bY-AUI"/>
-        <segue reference="cBT-tZ-FiK"/>
         <segue reference="tEv-cJ-QMU"/>
-        <segue reference="z2X-9i-67i"/>
+        <segue reference="I4c-g7-Lea"/>
+        <segue reference="cBT-tZ-FiK"/>
+        <segue reference="B2S-Jr-N4i"/>
     </inferredMetricsTieBreakers>
 </document>

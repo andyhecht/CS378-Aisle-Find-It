@@ -30,12 +30,18 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     var searchController:UISearchController!
     var locationManager: CLLocationManager!
+    var useHomeLocation = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.showsUserLocation = true
         mapView.delegate = self
+        
+        storeAddress = ""
+        useHomeLocation = false
+//        let homeAddress = "4409 Duval St, Austin, Texas, 78751"
+//        
         
         //set up search bar
         let locationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
@@ -51,8 +57,6 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         locationSearchTable.handleMapSearchDelegate = self
         //end search bar
-        
-        
         
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
@@ -71,7 +75,34 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate, searchRadius * 2.0, searchRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
-        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude:30.2849, longitude: -97.7431), animated: false) // sets center of starting map in Austin
+        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude:30.2849, longitude: -97.7431), animated: false)
+        
+        for i in users {
+            if(i.valueForKey("userName") as! String == currentUser){
+                if(i.valueForKey("homeAddress") as! String == ""){
+                mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude:30.2849, longitude: -97.7431), animated: false) // sets center of starting map in Austin
+                }else{
+                    print("\(i.valueForKey("homeAddress") as! String)")
+                    CLGeocoder().geocodeAddressString(i.valueForKey("homeAddress") as! String, completionHandler:
+                        {(placemarks, error) in
+                            
+                            if error != nil {
+                                print("Geocode failed: \(error!.localizedDescription)")
+                            } else if placemarks!.count > 0 {
+                                let placemark = placemarks![0]
+                                let location = placemark.location
+                                let lat = location!.coordinate.latitude
+                                let long = location!.coordinate.longitude
+                                print("\(lat) \(long)")
+                                self.mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude:lat, longitude: long), animated: false) // sets center of starting map in Austin
+                                self.useHomeLocation = true
+                            }
+                    })
+                    
+                }
+
+            }
+        }
         
     }
     
@@ -88,7 +119,9 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
     func mapView(mapView: MKMapView, didUpdateUserLocation
         // Reset the center of the map to the user's location whenever the user moves
         userLocation: MKUserLocation) {
-        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), animated: false)
+        if(storeAddress == "" && !useHomeLocation){
+            mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), animated: false)
+        }
     }
     
     @IBAction func zoomIn(sender: AnyObject) {
@@ -114,32 +147,6 @@ class ChooseStoreViewController: UIViewController, MKMapViewDelegate, CLLocation
             mapView.mapType = MKMapType.Standard
         }
     }
-    
-//    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-//        if(identifier == "storeChosenSegueIdentifier"){
-//            if(storeAddress == "2701 E 7th St, Austin TX" || storeAddress == "5808 Burnet Rd, Austin TX"){
-//                return true
-//            }else{
-//                print("Store Address: \(storeAddress)")
-//                return false
-//            }
-//        }else{
-//            return false
-//        }
-//    }
-//    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if  segue.identifier == "storeChosenSegueIdentifier"{
-//            if(storeAddress == "2701 E 7th St, Austin TX"){
-//                segue.destinationViewController as? StoreMapViewController
-//            }else if(storeAddress == "5808 Burnet Rd, Austin TX"){
-//                
-//            }else if(storeAddress == "7112 Ed Bluestein, Austin TX"){
-//                
-//            }
-//            //let teamIndex = tableView.indexPathForSelectedRow?.row
-//        }
-//    }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
