@@ -24,7 +24,7 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
             
             addItemText.placeholder = "Enter Item"
             
-            navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: nil, action: nil)
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: nil, action: #selector(saveList))
             navigationItem.rightBarButtonItem = UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(logOut))
             
             //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Item", style: .Plain, target: self, action: #selector(addTapped))
@@ -129,6 +129,10 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
         tableView.reloadData()
     }
     
+    func saveList(){
+        sharedLists[currentUser] = list
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         let itm = addItemText.text!
@@ -160,5 +164,5 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
-        
+    
 }

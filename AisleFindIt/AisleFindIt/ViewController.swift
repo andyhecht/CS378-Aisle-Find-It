@@ -13,6 +13,7 @@ import SpriteKit
 var cart : SKSpriteNode!
 var users = [NSManagedObject]()
 var userNames = [""]
+var sharedLists: [String: [String]] = ["": [""]]
 var currentUser:String = ""
 
 class ViewController: UIViewController, AddNewUser {

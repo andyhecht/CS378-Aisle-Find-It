@@ -17,6 +17,7 @@ class MainTableViewController: UITableViewController {
         
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(logOut))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:self, action: nil)
 //        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: nil)
 
         // Uncomment the following line to preserve selection between presentations

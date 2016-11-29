@@ -19,6 +19,11 @@ class ViewListTableViewController: UITableViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.Plain, target:self, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(logOut))
         
+        let shared = sharedLists[""]
+        for i in shared!{
+            print("shared: " + i)
+        }
+        
         //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Item", style: .Plain, target: self, action: #selector(addTapped))
         
         // Uncomment the following line to preserve selection between presentations
