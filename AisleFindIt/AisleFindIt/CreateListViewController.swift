@@ -22,6 +22,8 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
             tableView.delegate = self
             tableView.dataSource = self
             
+//            list = savedList[currentUser]
+            
             addItemText.placeholder = "Enter Item"
             
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: nil, action: #selector(saveList))
@@ -67,7 +69,6 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
             //        cell.detailTextLabel?.text = "+"
             //        cell.detailTextLabel?.textColor = UIColor.greenColor()
             //        cell.detailTextLabel?.backgroundColor = UIColor.grayColor()
-            
             return cell
         }
         
@@ -99,6 +100,7 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         func logOut(){
+            saveList()
             print("Logging out")
             navigationController?.popToRootViewControllerAnimated(true)
         }
@@ -131,6 +133,7 @@ class CreateListViewController: UIViewController, UITableViewDataSource, UITable
     
     func saveList(){
         sharedLists[currentUser] = list
+        savedList[currentUser] = list
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

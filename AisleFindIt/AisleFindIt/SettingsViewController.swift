@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class SettingsViewController: UIViewController{
+class SettingsViewController: UIViewController, LoginProtocol {
     // need to do something with this
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var locationControl: UISegmentedControl!
@@ -80,6 +80,7 @@ class SettingsViewController: UIViewController{
         let newPass = newPassword.text!
         let reEnter = reEnterNewPassword.text!
         
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         for i in users {
             if(i.valueForKey("userName") as! String == currentUser){
@@ -96,6 +97,7 @@ class SettingsViewController: UIViewController{
                         if(i.valueForKey("userName") as! String == currentUser){
                             i.setValue(newPass, forKey: "password")
                             notify("New Password Saved!")
+                            appDelegate.saveContext()
                             currentPassword.text = ""
                             newPassword.text = ""
                             reEnterNewPassword.text = ""

@@ -74,6 +74,7 @@ class CreateNewUserViewController: UIViewController, LoginProtocol {
         }
         
         if(loginValid){
+            currentUser = userNameText
             self.performSegueWithIdentifier("CreateNewLoginSegueIdentifier", sender: self)
         }
         

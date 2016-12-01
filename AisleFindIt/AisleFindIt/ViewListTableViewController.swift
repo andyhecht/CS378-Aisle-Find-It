@@ -11,18 +11,16 @@ import UIKit
 
 class ViewListTableViewController: UITableViewController {
     
-    var defaultList = ["Eggs", "Milk", "Bananas", "Bread"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.Plain, target:self, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title:"Log Out", style:.Plain, target:self, action: #selector(logOut))
         
-        let shared = sharedLists[""]
-        for i in shared!{
-            print("shared: " + i)
-        }
+//        let shared = sharedLists[""]
+//        for i in shared!{
+//            print("shared: " + i)
+//        }
         
         //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Item", style: .Plain, target: self, action: #selector(addTapped))
         

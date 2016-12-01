@@ -16,6 +16,9 @@ var userNames = [""]
 var sharedLists: [String: [String]] = ["": [""]]
 var currentUser:String = ""
 
+// testing how this would work
+var savedList: [String: [String]] = ["": [""]]
+
 class ViewController: UIViewController, AddNewUser {
     
     @IBOutlet weak var userName: UITextField!
@@ -83,6 +86,8 @@ class ViewController: UIViewController, AddNewUser {
         user.setValue(userName, forKey: "userName")
         user.setValue(password, forKey: "password")
         user.setValue("", forKey: "homeAddress")
+        
+        savedList[userName] = [""] // create a saved grocery list for this user
         
         // keep track of each userName to check for multiples
         if(userNames[0] == ""){

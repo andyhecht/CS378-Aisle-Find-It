@@ -12,8 +12,6 @@ import UIKit
 
 class ViewList2TableViewController: UITableViewController {
     
-    var defaultList = ["Eggs", "Milk", "Bananas", "Bread"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
